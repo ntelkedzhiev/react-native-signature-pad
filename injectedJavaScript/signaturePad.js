@@ -48,8 +48,13 @@ var content = `var SignaturePad = (function (document) {
     ctx.fillStyle = this.backgroundColor;
     ctx.clearRect(0, 0, canvas.width, canvas.height);
     ctx.fillRect(0, 0, canvas.width, canvas.height);
+    this._data = [];
     this._reset();
   };
+
+  SignaturePad.prototype.toData = function () {
+    return this._data;
+  }
 
   SignaturePad.prototype.toDataURL = function (imageType, quality) {
     var canvas = this._canvas;
@@ -185,6 +190,7 @@ var content = `var SignaturePad = (function (document) {
       c2, c3,
       curve, tmp;
 
+    this._data.push(point);
     points.push(point);
 
     if (points.length > 2) {

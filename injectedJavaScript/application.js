@@ -17,15 +17,15 @@ var content = (penColor, backgroundColor, dataURL) => `
       signaturePadCanvas.getContext('2d').scale(devicePixelRatio, devicePixelRatio);
     };
 
-    var finishedStroke = function(base64DataUrl) {
-       executeNativeFunction('finishedStroke', {base64DataUrl: base64DataUrl});
+    var finishedStroke = function(base64DataUrl, points) {
+       executeNativeFunction('finishedStroke', {base64DataUrl: base64DataUrl, points: points});
     };
 
     var enableSignaturePadFunctionality = function () {
       var signaturePad = new SignaturePad(signaturePadCanvas, {
-        penColor: '${penColor || 'black'}',
-        backgroundColor: '${backgroundColor || 'white'}',
-        onEnd: function() { finishedStroke(signaturePad.toDataURL()); }
+        penColor: '${penColor || "black"}',
+        backgroundColor: '${backgroundColor || "white"}',
+        onEnd: function() { finishedStroke(signaturePad.toDataURL(), signaturePad.toData()); }
       });
       /* signaturePad.translateMouseCoordinates = function (point) {
         var translatedY = point.x;

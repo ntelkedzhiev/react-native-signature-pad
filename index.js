@@ -98,9 +98,11 @@ class SignaturePad extends Component {
     this.props.onError({ details: args });
   };
 
-  _bridged_finishedStroke = ({ base64DataUrl }) => {
-    this.props.onChange({ base64DataUrl });
-    this.setState({ base64DataUrl });
+  _bridged_finishedStroke = ({ base64DataUrl, points }) => {
+    console.log("this.points", points);
+    // const { base64DataUrl } = args;
+    // this.props.onChange({ base64DataUrl });
+    // this.setState({ base64DataUrl });
   };
 
   _renderError = args => {
